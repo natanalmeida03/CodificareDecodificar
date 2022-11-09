@@ -18,7 +18,9 @@ principal
 	
 	i = 0;
 
+	escreval("CODIFICAR(c ou C) OU DECODIFICAR(d ou D)? ");
 	leiaCaracter(cd);
+	escreval("MENSAGEM: ");
 	leia(msg);
 
 	tamMsg = tamanhoTexto(msg);
