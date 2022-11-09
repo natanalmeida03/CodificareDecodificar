@@ -1,0 +1,95 @@
+algoritmo decodificarPalavra;
+// Síntese
+//  Objetivo: codificar frase e decodificar codigo
+//  Entrada : frase ou codigo
+//  Saída   : frase decodificada ou codigo codificado
+
+
+principal
+	// Declarações
+
+	caracter cd, crcCod, lt;
+	texto msg, msgCod;
+	inteiro tamMsg, letra;
+	inteiro i;
+	texto msgdiv[200];
+
+	msgCod = "";
+	
+	i = 0;
+
+	leiaCaracter(cd);
+	leia(msg);
+
+	tamMsg = tamanhoTexto(msg);
+
+
+	
+
+	se(cd == 'c' ou cd == 'C')entao
+		enquanto (i<=tamMsg-1) faca
+			msgdiv[i] = copia(msg, i, i);
+			lt = caracterTexto(msgdiv[i], 0);
+			letra = caracterAscii(lt);
+			se(letra >= 48 e letra <=57)entao
+				letra = letra - 15;
+				crcCod = asciiCaracter(letra);
+				msgCod = msgCod + crcCod;
+			senao
+				se ((letra >= 97 e letra <=122) ou (letra >= 65 e letra <=90)) entao
+					letra = letra - 20;
+					crcCod = asciiCaracter(letra);
+					msgCod = msgCod + crcCod;
+				senao
+					crcCod = asciiCaracter(letra);
+					msgCod = msgCod + "|" + crcCod;
+				fimSe				
+			fimSe
+			i = i + 1;		
+		fimEnquanto
+		escreval(msgCod);			
+	senao
+		se(cd == 'd' ou cd == 'D')entao
+			enquanto (i<=tamMsg-1) faca
+			msgdiv[i] = copia(msg, i, i);
+			lt = caracterTexto(msgdiv[i], 0);
+			letra = caracterAscii(lt);
+			se(letra >= 33 e letra <=42)entao
+				letra = letra + 15;
+				crcCod = asciiCaracter(letra);
+				msgCod = msgCod + crcCod;
+				i = i + 1;
+			senao
+				se ((letra >= 77 e letra <=102) ou (letra >= 45 e letra <=70)) entao
+					letra = letra + 20;
+					crcCod = asciiCaracter(letra);
+					msgCod = msgCod + crcCod;
+					i = i + 1;
+				senao
+					se ((letra == 124)) entao
+						i = i + 1;
+						msgdiv[i] = copia(msg, i, i);
+						lt = caracterTexto(msgdiv[i], 0);
+						letra = caracterAscii(lt);
+						crcCod = asciiCaracter(letra);
+						msgCod = msgCod + crcCod;
+						i = i + 1;						
+					senao
+						crcCod = asciiCaracter(letra);
+						msgCod = msgCod + crcCod;
+						i = i + 1;
+					fimSe
+					
+				fimSe				
+			fimSe		
+		fimEnquanto
+		escreval(msgCod);
+
+		senao
+			escreval("");
+		fimSe
+	fimSe
+
+	// Instruções
+
+fimPrincipal
